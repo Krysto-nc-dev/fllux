@@ -1,8 +1,8 @@
-
-import SignUpFormprovider from "@/components/forms/sign-up/form-provider"
+'use client'
+import ButtonHandler from "@/components/forms/sign-up/button-handlers"
+import SignUpFormProvider from "@/components/forms/sign-up/form-provider"
+import HighLightBar from "@/components/forms/sign-up/highlight-bar"
 import RegistrationFormStep from "@/components/forms/sign-up/registration-step"
-import { currentUser } from "@clerk/nextjs"
-import { redirect } from "next/navigation"
 
 type props = {
    
@@ -16,11 +16,13 @@ const SignUp =  (props: Props) => {
     <div className="flex-1 py-36 md:px-16 w-full">
       <div className="flex flex-col h-full gap-3">
 
-        <SignUpFormprovider>
+        <SignUpFormProvider>
           <div className="flex flex-col gap-3">
-           <RegistrationFormStep></RegistrationFormStep>
+           <RegistrationFormStep/>
+           <ButtonHandler/>
           </div>
-        </SignUpFormprovider>
+          <HighLightBar/>
+        </SignUpFormProvider>
         
       </div>
     </div>

@@ -17,7 +17,7 @@ import { ArrowRightCircleIcon, Check } from 'lucide-react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { log } from 'console'
+
 
 export default async function Home() {
   

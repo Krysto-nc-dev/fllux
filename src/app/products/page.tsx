@@ -1,4 +1,5 @@
 'use client'
+import { onGetDolibarrProducts } from '@/actions/dolibarr/products'
 import NavBar from '@/components/navbar'
 import {
   Card,
@@ -13,7 +14,6 @@ import { Check } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { fetchDolibarr } from '@/lib/dolibarr'
 
 export default function Product() {
   const [products, setProducts] = useState<any[]>([])
@@ -23,7 +23,7 @@ export default function Product() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await fetchDolibarr('/products')
+        const data = await onGetDolibarrProducts('/products')
         setProducts(data)
       } catch (error) {
         setError(error.message)
@@ -55,7 +55,11 @@ export default function Product() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <span className="text-4xl font-bold">{product.price} XPF</span>
+                <span className="text-4xl font-bold">
+                  {product.price
+                    ? `${Number(product.price).toFixed(0)} XPF`
+                    : 'N/A'}
+                </span>
               </CardContent>
               <CardFooter className="flex flex-col items-start gap-4">
                 <Link
